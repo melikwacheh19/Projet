@@ -1,0 +1,267 @@
+{% extends "base.html.twig" %}
+
+
+{% block content %}
+    <!-- Modal content-->
+    <div class="modal-content col-md-12">
+        <div class="modal-header">
+            <h5 class="modal-title border-bottom-primary" style="width: 100%;color: #4e73df;font-weight: bold;font-size: 23px;"><i style="margin-right: 5px;"class="fas fa-user"></i> Fiche n°
+                <span id="titleIdClient">{{ client.numeroDossier }}</span>
+                <span id="titleNomClient"></span>
+            </h5>                        </div>
+        <div class="modal-body row">
+
+
+            <div class="col-md-5">
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text" ><i style="margin-right: 5px;" class="far fa-calendar-plus"></i> Date création</span>
+                    </div>
+                    <input type="text" readonly="true" class="form-control form-control-sm " id="date_creation" name="date_creation" value="{{ client.dateCreation|date("m/d/Y") }}">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text"><i style="margin-right: 5px;"class="far fa-calendar-plus"></i> Affectation</span>
+                    </div>
+                    <input type="text" readonly="true" class="form-control form-control-sm " id="date_affectation" name="date_affectation" value="{{ client.dateAffectation|date("d/m/Y H:i") }}">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <div data-val="" class="input-group-prepend copy_text ">
+                        <span class="input-group-text text"><i style="margin-right: 5px;"class="fas fa-user"></i> Nom</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm clientToUpdate" id="nom_client" name="nom_client" value="{{ client.nom }}">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <div data-val="" class="input-group-prepend copy_text ">
+                        <span class="input-group-text text"><i style="margin-right: 5px;"class="fas fa-user"></i> Prénom</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm clientToUpdate" id="prenom_client" name="prenom_client" value="{{ client.prenom }}">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <div data-val="00/00/0000" id="date_naissance_copy" class="input-group-prepend copy_text">
+                        <span class="input-group-text text"><i style="margin-right: 5px;"class="fas fa-birthday-cake"></i> Née le</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm clientToUpdate" id="date_naissance_client" name="date_naissance_client" value="{{ client.dateDeNaissance|date("m/d/Y") }}">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text"><i style="margin-right: 5px;"class="fas fa-briefcase"></i> Activite</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm clientToUpdate" id="activite_client" name="activite_client" value="{{ client.activite }}">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text"><i style="margin-right: 5px;"class="fas fa-university"></i>Matière</span>
+                    </div>
+                    <input type="text" disabled value="{{ client.matiere }}">
+                    <select style="    width: 100px;" name="client_domain" id="client_domain" class="form-control form-control-sm clientToUpdate">
+                        <option value="0">Choisir</option>
+                        <option value="1">Langue</option>
+                        <option value="2">Hygiene </option>
+                        <option value="3">Bureautique</option>
+                        <option value="4">Digital</option>
+                        <option value="5">Légal</option>
+
+
+                    </select>
+
+
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text"><i style="margin-right: 5px;"class="fas fa-search-plus"></i> Type de fiche</span>
+                    </div>
+                    <input type="text" disabled value="{{ client.typeDeFiche }}">
+                    <select style="width: 160px;" name="source_client" id="source_client" class="form-control form-control-sm clientToUpdate">
+                        <option value="0">Choisir</option>
+                        <option value="1">Lead</option>
+                        <option value="2">Télephone</option>
+                        <option value="3">Parrainage</option>
+                        <option value="4">Prospection</option>
+                        <option value="5">Fidélisé</option>
+
+
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="col-md-5">
+                <div class="input-group input-group-sm mb-3 ">
+                    <div data-val="" class="input-group-prepend copy_text">
+                        <span class="input-group-text text"><i style="margin-right: 5px;"class="fas fa-map-pin"></i> Adresse</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm clientToUpdate" id="adresse_client" name="adresse_client" value="{{ client.adresse }}">
+
+                </div>
+                <div class="input-group input-group-sm mb-3 ">
+                    <div data-val="" class="input-group-prepend copy_text">
+                        <span class="input-group-text text "><i style="margin-right: 5px;"class="fas fa-city"></i> Ville</span>
+                    </div>
+                    <input style="width: 120px;" type="text" class="form-control form-control-sm clientToUpdate" id="ville_client" name="ville_client" value="{{ client.ville }}">
+
+
+                </div>
+                <div class="input-group input-group-sm mb-3 ">
+                    <div data-val="" class="input-group-prepend copy_text">
+                        <span class="input-group-text text "><i style="margin-right: 5px;"class="fas fa-city"></i> CP</span>
+                    </div>
+                    <input style="width: 80px;" type="text" class="form-control form-control-sm clientToUpdate" id="CP_client" name="CP_client" value="{{ client.cp }}">
+
+
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <div data-val="" class="input-group-prepend copy_text ">
+                        <span class="input-group-text text"><i style="margin-right: 5px;"class="fas fa-paper-plane"></i> Email</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm clientToUpdate" id="email_client" name="email_client" value="{{ client.email }}">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <div data-val="" class="input-group-prepend copy_text ">
+                        <span class="input-group-text text"><i style="margin-right: 5px;"class="fas fa-phone-square-alt"></i> Tel 1</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm clientToUpdate" id="tel1_client" name="tel1_client" value="{{ client.tel1 }}">
+                    <div style="width: 38px;" class="input-group-append">
+                                                <span style="background: #c8f8d0" class="input-group-text text"> <a style="cursor:pointer" class="clickToCall" data-id_client="1910" data-tel="" href="tel:">
+                                                        <i style="margin-right: 5px;"style="color:green" class="fa"></i></a></span>
+                    </div>
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <div data-val="" class="input-group-prepend copy_text ">
+                        <span class="input-group-text text"><i style="margin-right: 5px;"class="fas fa-phone-square-alt"></i> Tel 2</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm clientToUpdate" id="tel2_client" name="tel2_client" value="{{ client.tel2 }}">
+                    <div style="width: 38px;" class="input-group-append">
+                                                <span style="background: #c8f8d0" class="input-group-text text"> <a style="cursor:pointer" class="clickToCall" data-id_client="1910" data-tel="" href="tel:">
+                                                        <i style="margin-right: 5px;"style="color:green" class="fa"></i></a></span>
+                    </div>
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <div data-val="" class="input-group-prepend copy_text ">
+                        <span class="input-group-text text"><i style="margin-right: 5px;"class="fas fa-phone-square-alt"></i> Montant</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm clientToUpdate" id="Montant" name="Montant" value="{{ client.montant }}">
+
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text"><i style="margin-right: 5px;"class="fas fa-user-edit"></i>TA</span>
+                    </div>
+                    <input type="text" disabled value="{{ client.ta.nom }}">
+                    <select style="width: 160px;" name="conseiller_client" id="conseiller_client" class="form-control form-control-sm clientToUpdate">
+                        <option value="0">Choisir</option>
+                        <option value="89"> Superviseur 1</option>
+                        <option value="18">AARON KALFON</option>
+                        <option value="102" selected="">ALBERT SIMAH</option>
+                        <option value="96">Anaelle ARZOINE</option>
+                        <option value="12">BENNY BENSIMON</option>
+                        <option value="100">DEDE HACCOUN</option>
+                        <option value="15">ELIE LESAGE</option>
+                        <option value="19">EYTHAN MARCIANO</option>
+                        <option value="9">FRANCK HAGEGE</option>
+                        <option value="13">GMA GMA</option>
+                        <option value="103">ILAN SEBAG</option>
+                        <option value="23">JEAN NEYMAR</option>
+                        <option value="16">LAURENT RAHMINE</option>
+                        <option value="92">Leslie KOUASSI</option>
+                        <option value="104">Mike BOOMER</option>
+                        <option value="10">RIVKA GABBAY</option>
+                        <option value="79">Sandra LAFONTAINE</option>
+                        <option value="14">TECHSMART TECHSMART</option>
+                        <option value="31">TEST1 CHEFREGIE</option>
+                        <option value="11">YONI BOOMER</option>
+
+                    </select>
+                    <input data-id_client="1910" min="2021-01-07" style="width:160px; " type="date" value="0000-00-00" name="date_rappel_TA" id="date_rappel_TA" class="form-control form-control-sm clientToUpdate">
+                    <input style="width:110px; " type="time" value="00:00:00" name="heure_rappel_TA" id="heure_rappel_TA" class="form-control form-control-sm clientToUpdate">
+                </div>
+
+            </div>
+
+            <div class="col-md-5">
+
+
+
+                        <div  class="input-group input-group-sm mb-3 col-md-12">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text text"><i style="margin-right: 5px;"class="fas fa-user-cog"></i> Statut</span>
+                            </div>
+                            <input type="text" disabled value="{{ client.statut }}">
+                            <select style="width: 160px;" name="statut_client_select" id="statut_client_select" class="form-control form-control-sm  statut_client_change">
+                                <option value="0">Choisir</option>
+                                <option value="1" selected="">Prospect</option>
+                                <option value="2">En cours</option>
+                                <option value="24">Refusé</option>
+                                <option value="33">RDV pris</option>
+                                <option value="34">Pas les outils nécessaires</option>
+                                <option value="35">NRP</option>
+                                <option value="36">Formation terminée</option>
+                                <option value="38">A retraiter</option>
+                                <!--                        <option  value="cloture">Clôture</option>
+                                <option  value="pas_interesse">Pas intéressé</option>-->
+
+
+                            </select>
+
+
+                        </div>
+                        <div  class="input-group input-group-sm mb-3 col-md-12">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text text"><i style="margin-right: 5px;"class="fas fa-university"></i>Organisme</span>
+                            </div>
+                            <select disabled="" style="width: 160px;" name="id_of" id="id_of" class="form-control form-control-sm clientToUpdate">
+                                <option value="0">Choisir</option>
+                                <option value="EFP" selected="">EFP</option>
+
+
+                            </select>
+                        </div>
+
+
+
+
+
+            </div>
+            <div class="col-md-5">
+
+
+                <div  class="input-group input-group-sm mb-3 col-md-12">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text"><i style="margin-right: 5px;"class="fas fa-money-bill-wave"></i>Budget</span>
+                    </div>
+                    <input style="width: 80px;" type="number" class="form-control form-control-sm clientToUpdate" id="budget_client" name="budget_client" value="{{ client.budget }}">
+                </div>
+                <div  class="input-group input-group-sm mb-3 col-md-12">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text"><i style="margin-right: 5px;"class="fas fa-phone-volume"></i>Disponibilité</span>
+                    </div>
+                    <input type="text" disabled value="{{ client.disponibilite }}">
+                    <select style="width: 160px;" name="disponibilite_rappel" id="disponibilite_rappel" class="form-control form-control-sm clientToUpdate">
+                        <option value="0">Choisir</option>
+                        <option value="1">Matin</option>
+                        <option value="2">Midi</option>
+                        <option value="3">Soir</option>
+
+
+                    </select>
+
+                </div>
+
+
+
+                <div>
+                    <label style="width: 190px;" for="commentaires"><b>Commentaires internes</b></label>
+                    <textarea id="commentaires" name="commentaires" class="form-control clientToUpdate"></textarea>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+            <button type="submit" class="btn btn-default" >Sauvgarder</button>
+        </div>
+    </div>
+
+
+{% endblock %}

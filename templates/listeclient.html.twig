@@ -1,0 +1,57 @@
+{% extends "base.html.twig" %}
+
+
+{% block content %}
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Liste Clients </h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>numero_dossier</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>date_de_naissance</th>
+                        <th>activite</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for client in listeclient %}
+
+                        <tr>
+                        <td>{{ client.numeroDossier }}</td>
+                        <td>{{ client.nom }}</td>
+                        <td>{{ client.prenom }}</td>
+                        <td>{{ client.dateDeNaissance|date("m/d/Y") }}</td>
+                        <td>{{ client.activite }}</td>
+                            <td>
+                                <a href="{{ path('delete', {id: client.numeroDossier}) }}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ path('details',{id: client.numeroDossier}) }}">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+
+
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
